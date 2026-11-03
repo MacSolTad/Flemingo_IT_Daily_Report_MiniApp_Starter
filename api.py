@@ -1,0 +1,2 @@
+SUPABASE_URL=https://gynyorzwsxiobjloiufw.supabase.co
+SUPABASE_KEY=sb_secret_5109gVVfHRKAodJkLDY5nQ_7q8LedVp
