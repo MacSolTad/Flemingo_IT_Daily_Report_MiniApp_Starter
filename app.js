@@ -1,0 +1,8 @@
+// Telegram Mini App bootstrap. Backend/API integration is the next phase.
+const tg=window.Telegram?.WebApp;tg?.ready();tg?.expand();
+const user=tg?.initDataUnsafe?.user;document.querySelector('#welcome').textContent=user?.first_name?`Welcome, ${user.first_name}`:'Welcome back';
+// Admin visibility is intentionally not inferred from the Telegram profile. Configure it
+// after adding a secure server endpoint that validates Telegram initData and role in Supabase.
+document.querySelector('#admin').style.display='none';
+const messages={report:'Daily Report form needs the authenticated API connection.',reports:'My Reports will load only your own reports after secure sign-in.',guidelines:'IT Guidelines will be loaded from your Supabase-backed API.',profile:'My Profile will load and update your employee profile.',approval:'Admin approval requires server-side admin verification.',search:'Report search requires server-side admin verification.',settings:'Admin settings require server-side admin verification.',analytics:'Analytics requires server-side admin verification.'};
+document.querySelectorAll('[data-action]').forEach(el=>el.addEventListener('click',()=>{const key=el.dataset.action;const msg=messages[key]||'Feature pending API connection';if(tg?.showAlert)tg.showAlert(msg);else{const t=document.querySelector('#toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',3500)}}));
